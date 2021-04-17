@@ -5,7 +5,9 @@ import pl.coderslab.utils.DBUtil;
 import pl.coderslab.utils.InvalidEmailException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class UserDAO {
     private static final String CREATE_USER_QUERY = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
@@ -89,8 +91,27 @@ public class UserDAO {
         }
     }
 
-    public static User[] findAll() {
-        User[] allUsers = new User[0];
+//    public static User[] findAll() {
+//        User[] allUsers = new User[0];
+//        try (Connection conn = DBUtil.getConnection()) {
+//            Statement statement = conn.createStatement();
+//            ResultSet resultSet = statement.executeQuery(GET_ALL_USERS);
+//            while (resultSet.next()) {
+//                User user = new User();
+//                user.setId(Integer.parseInt(resultSet.getString("id")));
+//                user.setUserName(resultSet.getString("username"));
+//                user.setEmail(resultSet.getString("email"));
+//                user.setPassword(resultSet.getString("password"));
+//                allUsers = addToArray(user, allUsers);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return allUsers;
+//    }
+
+    public static List<User> findAll() {
+        List<User> allUsers = new ArrayList<>();
         try (Connection conn = DBUtil.getConnection()) {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(GET_ALL_USERS);
@@ -100,7 +121,7 @@ public class UserDAO {
                 user.setUserName(resultSet.getString("username"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPassword(resultSet.getString("password"));
-                allUsers = addToArray(user, allUsers);
+                allUsers.add(user);
             }
         } catch (SQLException e) {
             e.printStackTrace();
