@@ -14,7 +14,7 @@ public class UserDAO {
     private static final String DELETE_USER_QUERY = "DELETE FROM users WHERE id=?";
     private static final String GET_ALL_USERS = "SELECT * FROM users";
     private static final String CHECK_EMAIL = "SELECT COUNT(*) FROM users WHERE email = ?";
-//    private static final String GET_USERS_COUNT = "SELECT COUNT(id) FROM users";
+
 
 
 
