@@ -18,9 +18,6 @@ public class UserDAO {
     private static final String CHECK_EMAIL = "SELECT COUNT(*) FROM users WHERE email = ?";
 
 
-
-
-
     public static String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
